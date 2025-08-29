@@ -1,0 +1,30 @@
+name:  installation ansible 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+
+    steps:
+      - name: Show system info
+        run: |
+          echo "Running on:"
+          hostname
+          cat /etc/os-release
+
+      - name: Install EPEL repository
+        run: |
+          sudo dnf install -y epel-release
+
+      - name: Install Ansible
+        run: |
+          sudo dnf install python3-pip
+          pip3 install ansible
+          
+
+      - name: Check Ansible version
+        run: |
+          ansible --version 
